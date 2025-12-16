@@ -275,33 +275,24 @@ export function AdvancedPriceChart({ action, valoren, instrumentName }: Advanced
               Advanced candlestick chart with volume indicators (±30 days around event)
             </CardDescription>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             {/* Event Info */}
-            <div className="rounded-lg border-2 border-red-500/30 bg-red-50 dark:bg-red-950/20 px-4 py-2">
-              <div className="flex items-center gap-2 mb-1">
-                <Calendar className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                  Ex-Dividend Date
-                </span>
+            <div className="text-right">
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Calendar className="h-3 w-3" />
+                Ex-Date: {action.exDividendDate}
               </div>
-              <div className="text-xl font-bold text-red-600 dark:text-red-400">
-                {new Date(action.exDividendDate).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </div>
-              <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
-                <DollarSign className="h-4 w-4" />
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <DollarSign className="h-3 w-3" />
                 {action.currency} {action.amount.toFixed(2)}/share
               </div>
             </div>
 
             {/* Price Change */}
             <div className="text-right">
-              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Ex-Div Impact</p>
+              <p className="text-xs text-muted-foreground">Ex-Div Change</p>
               <p
-                className={`text-3xl font-bold ${
+                className={`text-xl font-bold ${
                   priceChange < 0
                     ? "text-red-600"
                     : priceChange > 0
@@ -379,76 +370,52 @@ export function AdvancedPriceChart({ action, valoren, instrumentName }: Advanced
           </Button>
         </div>
 
-        {/* Corporate Action Date Banner */}
-        <div className="mb-4 rounded-lg border-2 border-red-500 bg-red-50 dark:bg-red-950/30 px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white font-bold shadow-lg">
-                <Calendar className="h-5 w-5" />
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                  Corporate Action: {action.actionTypeLabel}
-                </div>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-lg font-bold text-red-600 dark:text-red-400">
-                    Ex-Dividend Date: {new Date(action.exDividendDate).toLocaleDateString("en-US", {
-                      weekday: "short",
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </span>
-                  <Badge variant="outline" className="border-red-500 text-red-600">
-                    {action.currency} {action.amount.toFixed(2)}/share
-                  </Badge>
-                </div>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-xs text-muted-foreground mb-1">Chart Period</div>
-              <div className="text-sm font-semibold">±30 days around event</div>
-            </div>
-          </div>
-        </div>
-
         {/* Chart */}
         <div className="relative w-full bg-card">
           <div ref={chartContainerRef} className="w-full" style={{ height: "600px" }} />
 
           {/* Corporate Action Legend */}
-          <div className="flex items-center justify-between border-t-2 border-border bg-muted/50 px-4 py-3 backdrop-blur-sm">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between border-t border-border bg-card/95 px-4 py-2 backdrop-blur-sm">
+            <div className="flex items-center gap-3">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <div className="flex items-center gap-2 cursor-pointer rounded-lg border-2 border-red-500 bg-red-50 dark:bg-red-950/30 px-3 py-1.5 transition-transform hover:scale-105">
-                      <div className="h-4 w-0.5 bg-red-500" />
-                      <span className="text-sm font-bold text-red-600 dark:text-red-400">
-                        Ex-Dividend: {new Date(action.exDividendDate).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
+                    <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                      <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse" />
+                      <span className="text-xs text-muted-foreground">
+                        Hover over red line for details
                       </span>
                     </div>
                   </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs">
-                    <p className="font-medium">Ex-Dividend Date</p>
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(action.exDividendDate).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </p>
-                    <p className="mt-1 text-xs">{action.actionTypeLabel}: {action.currency} {action.amount.toFixed(2)}</p>
+                  <TooltipContent side="top" className="max-w-xs p-3">
+                    <div className="space-y-2">
+                      <div>
+                        <p className="font-bold text-sm">Corporate Action</p>
+                        <p className="text-xs text-muted-foreground">{action.actionTypeLabel}</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-xs">Ex-Dividend Date</p>
+                        <p className="text-sm">
+                          {new Date(action.exDividendDate).toLocaleDateString("en-US", {
+                            weekday: "short",
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-xs">Amount</p>
+                        <p className="text-sm">{action.currency} {action.amount.toFixed(2)} per share</p>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-xs">Status</p>
+                        <p className="text-sm capitalize">{action.status}</p>
+                      </div>
+                    </div>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              <div className="text-xs text-muted-foreground">
-                Red dashed line indicates corporate action date on chart
-              </div>
             </div>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <span className="font-mono">{new Date().toLocaleTimeString("en-US", { hour12: false })} UTC</span>
