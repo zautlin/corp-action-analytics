@@ -101,7 +101,7 @@ export function ChartSelector({
   ]
 
   return (
-    <div className="w-64 space-y-2">
+    <div className="w-full space-y-2">
       {/* Corporate Actions Count */}
       {corpActionsCount !== undefined && (
         <div className="flex items-center gap-2 px-2 pb-3 border-b">

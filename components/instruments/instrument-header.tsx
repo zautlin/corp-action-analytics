@@ -28,88 +28,84 @@ interface InstrumentHeaderProps {
 
 export function InstrumentHeader({ instrument }: InstrumentHeaderProps) {
   return (
-    <Card className="border-b rounded-none">
-      <CardContent className="pt-6">
-        <div className="flex items-start justify-between">
-          {/* Left: Instrument Info */}
-          <div className="space-y-3">
-            {/* Ticker and Name */}
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <Building2 className="h-6 w-6 text-primary" />
-                <h1 className="text-3xl font-bold">
-                  {instrument.ticker || instrument.valoren}
-                </h1>
-              </div>
-              <Badge variant="outline" className="text-sm">
+    <Card className="border-2">
+      <CardContent className="p-4">
+        <div className="space-y-3">
+          {/* Ticker and Valoren */}
+          <div className="flex items-center gap-2 pb-3 border-b">
+            <Building2 className="h-5 w-5 text-primary flex-shrink-0" />
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl font-bold truncate">
+                {instrument.ticker || instrument.valoren}
+              </h1>
+              <Badge variant="outline" className="text-xs mt-1">
                 {instrument.valoren}
               </Badge>
             </div>
-
-            <div className="text-xl text-muted-foreground">
-              {instrument.instrument_name || instrument.instrument_symbol || "Instrument Name"}
-            </div>
-
-            {/* Metadata */}
-            <div className="flex flex-wrap items-center gap-4 text-sm">
-              {instrument.isin && (
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">ISIN:</span>
-                  <span className="font-mono font-medium">{instrument.isin}</span>
-                </div>
-              )}
-
-              {instrument.sector && (
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Sector:</span>
-                  <Badge variant="secondary">{instrument.sector}</Badge>
-                </div>
-              )}
-
-              {instrument.currency && (
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Currency:</span>
-                  <Badge variant="outline">{instrument.currency}</Badge>
-                </div>
-              )}
-
-              {instrument.bourse_code && (
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Bourse Code:</span>
-                  <Badge variant="outline">{instrument.bourse_code}</Badge>
-                </div>
-              )}
-
-              {instrument.operating_mic && (
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Operating MIC:</span>
-                  <Badge variant="outline">{instrument.operating_mic}</Badge>
-                </div>
-              )}
-
-              {instrument.segment_mic && (
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Segment MIC:</span>
-                  <Badge variant="outline">{instrument.segment_mic}</Badge>
-                </div>
-              )}
-            </div>
-
-
           </div>
 
-          {/* Right: Action Buttons */}
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm">
-              <Star className="h-4 w-4 mr-2" />
-              Add to Watchlist
+          {/* Instrument Name */}
+          <div className="text-sm font-medium leading-snug">
+            {instrument.instrument_name || instrument.instrument_symbol || "Instrument Name"}
+          </div>
+
+          {/* Metadata - Vertical Stack */}
+          <div className="space-y-2 text-xs">
+            {instrument.isin && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">ISIN:</span>
+                <span className="font-mono font-medium">{instrument.isin}</span>
+              </div>
+            )}
+
+            {instrument.sector && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Sector:</span>
+                <Badge variant="secondary" className="text-xs">{instrument.sector}</Badge>
+              </div>
+            )}
+
+            {instrument.currency && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Currency:</span>
+                <Badge variant="outline" className="text-xs">{instrument.currency}</Badge>
+              </div>
+            )}
+
+            {instrument.bourse_code && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Bourse Code:</span>
+                <Badge variant="outline" className="text-xs">{instrument.bourse_code}</Badge>
+              </div>
+            )}
+
+            {instrument.operating_mic && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Operating MIC:</span>
+                <Badge variant="outline" className="text-xs">{instrument.operating_mic}</Badge>
+              </div>
+            )}
+
+            {instrument.segment_mic && (
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Segment MIC:</span>
+                <Badge variant="outline" className="text-xs">{instrument.segment_mic}</Badge>
+              </div>
+            )}
+          </div>
+
+          {/* Action Buttons - Stacked */}
+          <div className="grid grid-cols-1 gap-2 pt-3 border-t">
+            <Button variant="outline" size="sm" className="w-full justify-start text-xs">
+              <Star className="h-3 w-3 mr-2" />
+              Watchlist
             </Button>
-            <Button variant="outline" size="sm">
-              <Share2 className="h-4 w-4 mr-2" />
+            <Button variant="outline" size="sm" className="w-full justify-start text-xs">
+              <Share2 className="h-3 w-3 mr-2" />
               Share
             </Button>
-            <Button variant="outline" size="sm">
-              <Download className="h-4 w-4 mr-2" />
+            <Button variant="outline" size="sm" className="w-full justify-start text-xs">
+              <Download className="h-3 w-3 mr-2" />
               Export
             </Button>
           </div>

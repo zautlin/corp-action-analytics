@@ -231,36 +231,34 @@ export default function InstrumentDetailPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Instrument Header */}
-      <InstrumentHeader
-        instrument={{
-          ...instrument,
-          corp_actions_count: corpActions.length,
-        }}
-      />
+    <div className="container mx-auto px-4 py-6">
+      <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
+        {/* Left Sidebar: Instrument Info + Chart Selector */}
+        <div className="space-y-6">
+          {/* Instrument Details Card */}
+          <InstrumentHeader
+            instrument={{
+              ...instrument,
+              corp_actions_count: corpActions.length,
+            }}
+          />
+          
+          {/* Chart Selector */}
+          <ChartSelector
+            selectedChart={selectedChart}
+            onChartChange={setSelectedChart}
+            hasSplits={hasSplits}
+            corpActionsCount={corpActions.length}
+          />
+        </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4">
-        <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-          {/* Left Sidebar: Chart Selector + Timeline */}
-          <div className="space-y-6">
-            <ChartSelector
-              selectedChart={selectedChart}
-              onChartChange={setSelectedChart}
-              hasSplits={hasSplits}
-              corpActionsCount={corpActions.length}
-            />
-          </div>
+        {/* Right: Chart Display */}
+        <div className="space-y-6">
+          {/* Corporate Actions Timeline */}
+          <CorpActionsTimeline actions={corpActions} />
 
-          {/* Right: Chart Display */}
-          <div className="space-y-6">
-            {/* Corporate Actions Timeline */}
-            <CorpActionsTimeline actions={corpActions} />
-
-            {/* Selected Chart */}
-            <div>{renderChart()}</div>
-          </div>
+          {/* Selected Chart */}
+          <div>{renderChart()}</div>
         </div>
       </div>
     </div>
