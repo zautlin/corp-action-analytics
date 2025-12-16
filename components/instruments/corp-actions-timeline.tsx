@@ -121,7 +121,7 @@ export function CorpActionsTimeline({ actions, onEventClick }: CorpActionsTimeli
                     {/* Dot */}
                     <div
                       className={cn(
-                        "absolute left-0 top-2 h-4 w-4 rounded-full border-2 border-background",
+                        "absolute left-0.5 top-2 h-4 w-4 rounded-full border-2 border-background",
                         dotColor
                       )}
                     />
