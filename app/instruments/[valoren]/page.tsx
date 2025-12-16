@@ -141,15 +141,8 @@ export default function InstrumentDetailPage() {
       case "overview":
         return (
           <div className="grid gap-6">
-            <div className="grid lg:grid-cols-2 gap-6">
-              <EventStudyHeatmap {...eodProps} />
-              <MomentumBoxPlots {...signalProps} />
-            </div>
-            <div className="grid lg:grid-cols-2 gap-6">
-              <VolatilityBurstPanel {...eodProps} />
-              <VolumeLiquidityPanel {...eodProps} />
-            </div>
-            {hasSplits && <SplitMomentumPanel {...eodProps} />}
+            <EventStudyHeatmap {...eodProps} />
+            <VolumeLiquidityPanel {...eodProps} />
             <AnnouncementDriftPanel {...eodProps} />
           </div>
         )
