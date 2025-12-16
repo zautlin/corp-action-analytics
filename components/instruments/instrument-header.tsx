@@ -28,11 +28,11 @@ interface InstrumentHeaderProps {
 
 export function InstrumentHeader({ instrument }: InstrumentHeaderProps) {
   return (
-    <Card className="border-2">
+    <Card className="border-2 shadow-sm">
       <CardContent className="p-4">
-        <div className="space-y-3">
+        <div className="space-y-4">
           {/* Ticker and Valoren */}
-          <div className="flex items-center gap-2 pb-3 border-b">
+          <div className="flex items-center gap-2 pb-4 border-b">
             <Building2 className="h-5 w-5 text-primary flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <h1 className="text-2xl font-bold truncate">
@@ -95,16 +95,28 @@ export function InstrumentHeader({ instrument }: InstrumentHeaderProps) {
           </div>
 
           {/* Action Buttons - Stacked */}
-          <div className="grid grid-cols-1 gap-2 pt-3 border-t">
-            <Button variant="outline" size="sm" className="w-full justify-start text-xs">
+          <div className="grid grid-cols-1 gap-2 pt-4 border-t">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-full justify-start text-xs transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:shadow-md"
+            >
               <Star className="h-3 w-3 mr-2" />
               Watchlist
             </Button>
-            <Button variant="outline" size="sm" className="w-full justify-start text-xs">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-full justify-start text-xs transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:shadow-md"
+            >
               <Share2 className="h-3 w-3 mr-2" />
               Share
             </Button>
-            <Button variant="outline" size="sm" className="w-full justify-start text-xs">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-full justify-start text-xs transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:shadow-md"
+            >
               <Download className="h-3 w-3 mr-2" />
               Export
             </Button>

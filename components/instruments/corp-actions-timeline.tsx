@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Calendar, TrendingUp, ChevronDown, ChevronUp, DollarSign, Info } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, formatCurrency } from "@/lib/utils"
 
 export interface CorporateAction {
   eventId: string
@@ -112,10 +112,10 @@ export function CorpActionsTimeline({ actions, onEventClick }: CorpActionsTimeli
       </CardHeader>
 
       {expanded && (
-        <CardContent className="pt-6">
-          <div className="space-y-6">
+        <CardContent className="p-6">
+          <div className="space-y-4">
             {/* Timeline */}
-            <div className="relative space-y-6">
+            <div className="relative space-y-4">
               {/* Vertical line */}
               <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" />
 
@@ -145,7 +145,7 @@ export function CorpActionsTimeline({ actions, onEventClick }: CorpActionsTimeli
                     {/* Content Card */}
                     <div
                       className={cn(
-                        "rounded-lg border-2 bg-card p-4 shadow-sm transition-all hover:shadow-md hover:border-primary/50",
+                        "rounded-lg border-2 bg-card p-4 shadow-sm transition-all duration-200 hover:shadow-lg hover:border-primary/60 hover:-translate-y-0.5",
                         isConfirmed ? "border-border" : "border-dashed border-muted-foreground/30"
                       )}
                     >
@@ -168,7 +168,7 @@ export function CorpActionsTimeline({ actions, onEventClick }: CorpActionsTimeli
                             <div className="flex items-center gap-2 text-lg">
                               <DollarSign className="h-5 w-5 text-green-600" />
                               <span className="font-bold text-green-600">
-                                {action.currency} {action.amount.toFixed(2)}
+                                {formatCurrency(action.amount, action.currency)}
                               </span>
                               <span className="text-sm text-muted-foreground">per share</span>
                             </div>

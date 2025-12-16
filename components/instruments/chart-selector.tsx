@@ -125,9 +125,10 @@ export function ChartSelector({
             key={option.id}
             variant={isSelected ? "default" : "ghost"}
             className={cn(
-              "w-full justify-start h-auto py-3 px-3",
+              "w-full justify-start h-auto py-3 px-3 transition-all duration-200",
               isDisabled && "opacity-50 cursor-not-allowed",
-              !isSelected && "hover:bg-muted"
+              !isSelected && "hover:bg-muted hover:shadow-sm hover:border-primary/20 border border-transparent",
+              isSelected && "shadow-md"
             )}
             onClick={() => option.available && onChartChange(option.id)}
             disabled={isDisabled}

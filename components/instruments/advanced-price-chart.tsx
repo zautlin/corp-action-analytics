@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import type { CorporateAction } from "@/lib/types"
 import { TrendingUp, Calendar, DollarSign, Play, Maximize2, Search, Plus, BarChart3, Bell } from "lucide-react"
+import { formatCurrency, formatPercent } from "@/lib/utils"
 
 interface AdvancedPriceChartProps {
   action: CorporateAction
@@ -284,7 +285,7 @@ export function AdvancedPriceChart({ action, valoren, instrumentName }: Advanced
               </div>
               <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <DollarSign className="h-3 w-3" />
-                {action.currency} {action.amount.toFixed(2)}/share
+                {formatCurrency(action.amount, action.currency)}/share
               </div>
             </div>
 
@@ -300,8 +301,7 @@ export function AdvancedPriceChart({ action, valoren, instrumentName }: Advanced
                     : "text-muted-foreground"
                 }`}
               >
-                {priceChange > 0 ? "+" : ""}
-                {priceChange.toFixed(2)}%
+                {formatPercent(priceChange)}
               </p>
             </div>
           </div>
