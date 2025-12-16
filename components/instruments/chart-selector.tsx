@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import {
   LineChart,
   BarChart3,
-  TrendingUp,
   Activity,
   Volume2,
   Zap,
@@ -18,7 +17,6 @@ import {
 export type ChartType =
   | "price"
   | "heatmap"
-  | "momentum"
   | "volatility"
   | "volume"
   | "split"
@@ -64,13 +62,6 @@ export function ChartSelector({
       label: "Event Study Heatmap",
       description: "Abnormal returns analysis",
       icon: Grid3x3,
-      available: true,
-    },
-    {
-      id: "momentum",
-      label: "Momentum Analysis",
-      description: "Box plots and momentum signals",
-      icon: TrendingUp,
       available: true,
     },
     {

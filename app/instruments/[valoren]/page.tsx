@@ -7,7 +7,6 @@ import { ChartSelector, type ChartType } from "@/components/instruments/chart-se
 import { CorpActionsTimeline, type CorporateAction } from "@/components/instruments/corp-actions-timeline"
 import { AdvancedPriceChart } from "@/components/instruments/advanced-price-chart"
 import { EventStudyHeatmap } from "@/components/event-study-heatmap"
-import { MomentumBoxPlots } from "@/components/momentum-box-plots"
 import { VolatilityBurstPanel } from "@/components/volatility-burst-panel"
 import { VolumeLiquidityPanel } from "@/components/volume-liquidity-panel"
 import { SplitMomentumPanel } from "@/components/split-momentum-panel"
@@ -51,7 +50,6 @@ export default function InstrumentDetailPage() {
   const [instrument, setInstrument] = useState<InstrumentData | null>(null)
   const [corpActions, setCorpActions] = useState<CorporateAction[]>([])
   const [eodDataMap, setEodDataMap] = useState<Map<string, EODData[]>>(new Map())
-  const [eventSignals, setEventSignals] = useState<any[]>([]) // EventSignals from signal-library
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -132,11 +130,6 @@ export default function InstrumentDetailPage() {
       eodDataMap: eodDataMap,
     }
 
-    // Props for components that need eventSignals
-    const signalProps = {
-      eventSignals: eventSignals,
-    }
-
     switch (selectedChart) {
       case "overview":
         return (
@@ -177,9 +170,6 @@ export default function InstrumentDetailPage() {
 
       case "heatmap":
         return <EventStudyHeatmap {...eodProps} />
-
-      case "momentum":
-        return <MomentumBoxPlots {...signalProps} />
 
       case "volatility":
         return <VolatilityBurstPanel {...eodProps} />
