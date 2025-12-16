@@ -367,8 +367,8 @@ export function AdvancedPriceChart({ action, valoren, instrumentName }: Advanced
         </div>
 
         {/* Chart */}
-        <div className="relative flex h-full w-full flex-col bg-card">
-          <div ref={chartContainerRef} className="flex-1 min-h-0" style={{ height: "600px" }} />
+        <div className="relative w-full bg-card">
+          <div ref={chartContainerRef} className="w-full" style={{ height: "600px" }} />
 
           {/* Corporate Action Legend */}
           <div className="flex items-center justify-between border-t border-border bg-card/95 px-4 py-2 backdrop-blur-sm">
