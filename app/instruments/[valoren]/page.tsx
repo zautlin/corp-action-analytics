@@ -5,7 +5,7 @@ import { useParams } from "next/navigation"
 import { InstrumentHeader } from "@/components/instruments/instrument-header"
 import { ChartSelector, type ChartType } from "@/components/instruments/chart-selector"
 import { CorpActionsTimeline, type CorporateAction } from "@/components/instruments/corp-actions-timeline"
-import { CorpActionTradingViewChart } from "@/components/corp-action-tradingview-chart"
+import { AdvancedPriceChart } from "@/components/instruments/advanced-price-chart"
 import { EventStudyHeatmap } from "@/components/event-study-heatmap"
 import { MomentumBoxPlots } from "@/components/momentum-box-plots"
 import { VolatilityBurstPanel } from "@/components/volatility-burst-panel"
@@ -174,7 +174,13 @@ export default function InstrumentDetailPage() {
           )
         }
 
-        return <CorpActionTradingViewChart action={mostRecentAction} showVolume={true} height={500} />
+        return (
+          <AdvancedPriceChart 
+            action={mostRecentAction} 
+            valoren={instrument.valoren}
+            instrumentName={instrument.instrument_name || instrument.ticker || instrument.valoren}
+          />
+        )
 
       case "heatmap":
         return <EventStudyHeatmap {...eodProps} />
