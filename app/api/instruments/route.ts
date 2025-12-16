@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { getClickHouseClient } from '@/lib/clickhouse-client'
+import { getMockInstruments, getMockInstrument } from '@/lib/mock-data'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,11 +12,10 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
     const valoren = searchParams.get('valoren')
-    const client = getClickHouseClient()
 
     // If valoren is provided, fetch specific instrument
     if (valoren) {
-      const instrument = await client.getInstrumentDetails(valoren)
+      const instrument = getMockInstrument(valoren)
 
       if (!instrument) {
         return NextResponse.json(
@@ -38,11 +37,9 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1')
     const pageSize = parseInt(searchParams.get('pageSize') || '50')
     const search = searchParams.get('search') || ''
-    const sortBy = searchParams.get('sortBy') || 'valoren'
-    const sortOrder = searchParams.get('sortOrder') || 'asc'
 
-    // Fetch instruments with pagination
-    const result = await client.getAllInstruments(page, pageSize, search, sortBy, sortOrder)
+    // Use mock data instead of ClickHouse
+    const result = getMockInstruments(page, pageSize, search)
 
     return NextResponse.json({
       success: true,

@@ -29,6 +29,7 @@ export interface EODData {
   closePrice: number
   volume: number
   adjustedClose?: number
+  turnover?: number
   [key: string]: any
 }
 

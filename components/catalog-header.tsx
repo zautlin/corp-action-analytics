@@ -1,6 +1,6 @@
 "use client"
 
-import { User, Settings, LogOut, Shield } from "lucide-react"
+import { User, Settings, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { NotificationDropdown } from "@/components/notification-dropdown"
-import { getCurrentUser, logout, canAccessAnalytics, canAccessAdminPortal, isSteward } from "@/lib/auth"
+import { getCurrentUser, logout } from "@/lib/auth"
 import { useEffect, useState } from "react"
 
 export function CatalogHeader() {
@@ -34,65 +34,20 @@ export function CatalogHeader() {
       <div className="mx-auto max-w-[1600px] px-6">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2">
+            <a href="/corp-actions" className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded bg-primary">
                 <span className="text-sm font-bold text-primary-foreground">DH</span>
               </div>
               <span className="text-lg font-semibold text-foreground">DataHex</span>
-            </div>
+            </a>
 
             <nav className="flex items-center gap-6">
-              <a href="/" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Library
-              </a>
-              <a
-                href="/instruments"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Instruments
-              </a>
               <a
                 href="/corp-actions"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 Corporate Actions
               </a>
-              <a
-                href="/my-datasets"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                My Datasets
-              </a>
-              <a
-                href="/requests"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Requests
-              </a>
-              {user && isSteward(user) && (
-                <a
-                  href="/manage"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Manage
-                </a>
-              )}
-              {canAccessAnalytics(user) && (
-                <a
-                  href="/analytics"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Analytics
-                </a>
-              )}
-              {canAccessAdminPortal(user) && (
-                <a
-                  href="/admin"
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Admin
-                </a>
-              )}
             </nav>
           </div>
 
@@ -122,14 +77,6 @@ export function CatalogHeader() {
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
                 </DropdownMenuItem>
-                {canAccessAdminPortal(user) && (
-                  <DropdownMenuItem asChild>
-                    <a href="/admin">
-                      <Shield className="mr-2 h-4 w-4" />
-                      <span>Admin Portal</span>
-                    </a>
-                  </DropdownMenuItem>
-                )}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="text-destructive" onClick={logout}>
                   <LogOut className="mr-2 h-4 w-4" />

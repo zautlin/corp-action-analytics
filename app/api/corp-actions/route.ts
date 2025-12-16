@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { getClickHouseClient } from '@/lib/clickhouse-client'
+import { getMockCorporateActions } from '@/lib/mock-data'
 
 export const dynamic = 'force-dynamic'
 
@@ -23,9 +23,8 @@ export async function GET(request: NextRequest) {
       status: searchParams.get('status') || undefined,
     }
 
-    // Get ClickHouse client and fetch corporate actions
-    const client = getClickHouseClient()
-    const actions = await client.getCorporateActions(filters)
+    // Use mock data instead of ClickHouse
+    const actions = getMockCorporateActions(filters)
 
     return NextResponse.json({
       success: true,

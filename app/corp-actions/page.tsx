@@ -7,6 +7,8 @@ import { CorpActionBreadcrumb } from "@/components/corp-action-breadcrumb"
 import { CorpActionFilters } from "@/components/corp-action-filters"
 import { CorpActionTable } from "@/components/corp-action-table"
 import { CorpActionCalendar } from "@/components/corp-action-calendar"
+import { CorpActionInstrumentsTab } from "@/components/corp-action-instruments-tab"
+import { CorpActionAnalysisTab } from "@/components/corp-action-analysis-tab"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import type { CorporateAction } from "@/lib/types"
@@ -170,24 +172,41 @@ export default function CorporateActionsPage() {
         </div>
 
         {/* Main Content Tabs */}
-        {/* Main Content Tabs */}
-        <Tabs defaultValue="table" className="space-y-6">
+        <Tabs defaultValue="dashboard" className="space-y-6">
           <TabsList>
-            <TabsTrigger value="table">Table View</TabsTrigger>
-            <TabsTrigger value="calendar">Calendar View</TabsTrigger>
+            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+            <TabsTrigger value="instruments">Instruments</TabsTrigger>
+            <TabsTrigger value="analysis">Advanced Charts</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="table">
-            <CorpActionTable
-              actions={filteredActions}
-              onActionSelect={handleActionSelect}
-              selectedActionId={selectedAction?.eventId}
-              loading={loading}
-            />
+          <TabsContent value="dashboard" className="space-y-6">
+            <Tabs defaultValue="table" className="space-y-6">
+              <TabsList>
+                <TabsTrigger value="table">Table View</TabsTrigger>
+                <TabsTrigger value="calendar">Calendar View</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="table">
+                <CorpActionTable
+                  actions={filteredActions}
+                  onActionSelect={handleActionSelect}
+                  selectedActionId={selectedAction?.eventId}
+                  loading={loading}
+                />
+              </TabsContent>
+
+              <TabsContent value="calendar">
+                <CorpActionCalendar actions={filteredActions} />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
-          <TabsContent value="calendar">
-            <CorpActionCalendar actions={filteredActions} />
+          <TabsContent value="instruments">
+            <CorpActionInstrumentsTab />
+          </TabsContent>
+
+          <TabsContent value="analysis">
+            <CorpActionAnalysisTab />
           </TabsContent>
         </Tabs>
       </main>

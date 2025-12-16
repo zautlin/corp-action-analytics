@@ -1,0 +1,88 @@
+
+> my-v0-project@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.2.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.108:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1396ms
+ ○ Compiling /api/instruments ...
+ ✓ Compiled /api/instruments in 544ms (361 modules)
+ GET /api/instruments?page=1&pageSize=20 200 in 672ms
+ ✓ Compiled /api/corp-actions in 234ms (363 modules)
+ GET /api/corp-actions 200 in 273ms
+ ○ Compiling /instruments/[valoren] ...
+ ✓ Compiled /instruments/[valoren] in 1122ms (945 modules)
+ GET /instruments/1234567 200 in 1656ms
+ GET /instruments/1234567 200 in 35ms
+ GET /api/instruments?valoren=1234567 200 in 32ms
+ GET /api/instruments?valoren=1234567 200 in 10ms
+ GET /api/corp-actions?valoren=1234567 200 in 18ms
+ GET /api/corp-actions?valoren=1234567 200 in 11ms
+ ✓ Compiled /api/eod-data in 445ms (947 modules)
+ GET /api/eod-data?valoren=1234567&eventDate=2025-11-16&daysAround=30 200 in 516ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-11-16&daysAround=30 200 in 6ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-08-18&daysAround=30 200 in 11ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-08-18&daysAround=30 200 in 5ms
+ GET /api/eod-data?valoren=1234567&eventDate=2024-12-16&daysAround=30 200 in 7ms
+ GET /api/eod-data?valoren=1234567&eventDate=2024-12-16&daysAround=30 200 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 4ms
+ GET /api/eod-data?valoren=1234567 400 in 2ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ ○ Compiling / ...
+ ✓ Compiled / in 910ms (1107 modules)
+ GET / 200 in 1094ms
+ ✓ Compiled /instruments in 329ms (1195 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /instruments 200 in 518ms
+ ✓ Compiled /api/corp-actions in 74ms (639 modules)
+ ✓ Compiled (641 modules)
+ GET /api/corp-actions 200 in 211ms
+ GET /api/instruments?page=1&pageSize=50&sortBy=valoren&sortOrder=asc 200 in 216ms
+ GET /api/instruments?page=1&pageSize=50&sortBy=valoren&sortOrder=asc 200 in 6ms
+ ✓ Compiled /instruments/[valoren] in 240ms (692 modules)
+ GET /instruments/1234567 200 in 326ms
+ GET /api/instruments?valoren=1234567 200 in 12ms
+ GET /api/instruments?valoren=1234567 200 in 4ms
+ GET /api/corp-actions?valoren=1234567 200 in 8ms
+ GET /api/corp-actions?valoren=1234567 200 in 6ms
+ ✓ Compiled /api/eod-data in 167ms (694 modules)
+ GET /api/eod-data?valoren=1234567&eventDate=2025-11-16&daysAround=30 200 in 198ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-11-16&daysAround=30 200 in 6ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-08-18&daysAround=30 200 in 7ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-08-18&daysAround=30 200 in 4ms
+ GET /api/eod-data?valoren=1234567&eventDate=2024-12-16&daysAround=30 200 in 6ms
+ GET /api/eod-data?valoren=1234567&eventDate=2024-12-16&daysAround=30 200 in 4ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 6ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 11ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 12ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET / 200 in 181ms
+ GET /instruments 200 in 71ms
+ GET /api/instruments?page=1&pageSize=50&sortBy=valoren&sortOrder=asc 200 in 6ms
+ GET /api/corp-actions 200 in 10ms
+ GET /api/instruments?page=1&pageSize=50&sortBy=valoren&sortOrder=asc 200 in 2ms
+ GET /instruments/1234567 200 in 17ms
+ GET /api/instruments?valoren=1234567 200 in 4ms
+ GET /api/instruments?valoren=1234567 200 in 7ms
+ GET /api/corp-actions?valoren=1234567 200 in 8ms
+ GET /api/corp-actions?valoren=1234567 200 in 6ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-11-16&daysAround=30 200 in 9ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-11-16&daysAround=30 200 in 4ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-08-18&daysAround=30 200 in 8ms
+ GET /api/eod-data?valoren=1234567&eventDate=2025-08-18&daysAround=30 200 in 4ms
+ GET /api/eod-data?valoren=1234567&eventDate=2024-12-16&daysAround=30 200 in 7ms
+ GET /api/eod-data?valoren=1234567&eventDate=2024-12-16&daysAround=30 200 in 4ms
+ GET /api/eod-data?valoren=1234567 400 in 3ms
+ GET /api/eod-data?valoren=1234567 400 in 2ms
+[?25h

@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { getClickHouseClient } from '@/lib/clickhouse-client'
+import { getMockEODData, getMockEODAroundEvent } from '@/lib/mock-data'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,17 +32,15 @@ export async function GET(request: NextRequest) {
       ? parseInt(searchParams.get('daysAround')!)
       : 30
 
-    const client = getClickHouseClient()
-
     let eodData
 
     // If eventDate is provided, fetch data around the event
     if (eventDate) {
-      eodData = await client.getEODAroundEvent(valoren, eventDate, daysAround)
+      eodData = getMockEODAroundEvent(valoren, eventDate, daysAround)
     }
     // Otherwise, fetch data for date range
     else if (dateFrom && dateTo) {
-      eodData = await client.getEODData(valoren, dateFrom, dateTo)
+      eodData = getMockEODData(valoren, dateFrom, dateTo)
     }
     // If neither, return error
     else {

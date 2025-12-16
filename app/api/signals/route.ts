@@ -4,7 +4,6 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { getClickHouseClient } from '@/lib/clickhouse-client'
 import { SignalLibrary } from '@/lib/signal-library'
 import type { CorporateAction, EODData } from '@/lib/types'
 
@@ -27,10 +26,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const client = getClickHouseClient()
+    // Use mock data instead of ClickHouse
+    const { getMockEODAroundEvent } = await import('@/lib/mock-data')
 
     // Fetch EOD data around the event (±180 days for momentum calculations)
-    const eodData = await client.getEODAroundEvent(valoren, eventDate, 180)
+    const eodData = getMockEODAroundEvent(valoren, eventDate, 180)
 
     if (eodData.length === 0) {
       return NextResponse.json(
