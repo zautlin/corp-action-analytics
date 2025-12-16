@@ -249,6 +249,7 @@ export default function InstrumentDetailPage() {
               selectedChart={selectedChart}
               onChartChange={setSelectedChart}
               hasSplits={hasSplits}
+              corpActionsCount={corpActions.length}
             />
           </div>
 

@@ -95,16 +95,7 @@ export function InstrumentHeader({ instrument }: InstrumentHeaderProps) {
               )}
             </div>
 
-            {/* Corp Actions Count */}
-            {instrument.corp_actions_count !== undefined && (
-              <div className="flex items-center gap-2 text-sm">
-                <TrendingUp className="h-4 w-4 text-primary" />
-                <span className="font-semibold">{instrument.corp_actions_count}</span>
-                <span className="text-muted-foreground">
-                  corporate action{instrument.corp_actions_count !== 1 ? "s" : ""}
-                </span>
-              </div>
-            )}
+
           </div>
 
           {/* Right: Action Buttons */}

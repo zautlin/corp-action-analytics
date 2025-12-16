@@ -12,6 +12,7 @@ import {
   Zap,
   Bell,
   Grid3x3,
+  TrendingUp,
 } from "lucide-react"
 
 export type ChartType =
@@ -37,11 +38,16 @@ interface ChartSelectorProps {
   hasSplits?: boolean
 }
 
+interface ChartSelectorPropsExtended extends ChartSelectorProps {
+  corpActionsCount?: number
+}
+
 export function ChartSelector({
   selectedChart,
   onChartChange,
   hasSplits = false,
-}: ChartSelectorProps) {
+  corpActionsCount,
+}: ChartSelectorPropsExtended) {
   const chartOptions: ChartOption[] = [
     {
       id: "overview",
@@ -96,6 +102,17 @@ export function ChartSelector({
 
   return (
     <div className="w-64 space-y-2">
+      {/* Corporate Actions Count */}
+      {corpActionsCount !== undefined && (
+        <div className="flex items-center gap-2 px-2 pb-3 border-b">
+          <TrendingUp className="h-5 w-5 text-primary" />
+          <span className="text-2xl font-bold">{corpActionsCount}</span>
+          <span className="text-sm text-muted-foreground">
+            corporate action{corpActionsCount !== 1 ? "s" : ""}
+          </span>
+        </div>
+      )}
+      
       <h3 className="text-sm font-semibold text-muted-foreground px-2 mb-3">CHART TYPES</h3>
 
       {chartOptions.map((option) => {
